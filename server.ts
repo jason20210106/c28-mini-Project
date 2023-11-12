@@ -45,7 +45,7 @@ app.get("/products/:pid",async function(req,res){
   res.json({product: foundProduct})
 })
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname,"public")));
 const PORT = 8080;
 
 app.listen(PORT, () => {
