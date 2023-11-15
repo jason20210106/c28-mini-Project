@@ -3,10 +3,15 @@ import express from "express";
 import expressSession from "express-session";
 import { converStr2Arr, readJsonfile } from "./utils";
 import path from "path"
-import { Product } from "./models";
+import { Product, Student } from "./models";
 
 const app = express();
+
+app.use(express.json())
+
+
 const PRODUCT_JSON_PATH = path.join(__dirname,"data","products.json")
+const STUDENT_JSON_PATH = path.join(__dirname,"data","students.json")
 // Add this line
 app.use(
   expressSession({
@@ -44,6 +49,18 @@ app.get("/products/:pid",async function(req,res){
   }
   res.json({product: foundProduct})
 })
+
+app.post("/students",async(req,res)=>{
+  const {name, age} = req.body;
+  const students: Student[] =await readJsonfile(STUDENT_JSON_PATH)
+  students.push({
+    id:(students.at(-1)?.id?? 0)+1,
+    name,
+    age,
+  })
+  res.json({message:"dummy"})
+})
+
 
 app.use(express.static(path.join(__dirname,"public")));
 const PORT = 8090;

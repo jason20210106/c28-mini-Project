@@ -21,3 +21,10 @@ export interface Product{
      rate: number;
      count:number
  }
+
+ export interface Student {
+    id: number;
+    name : string;
+    age: number;
+    
+ }
