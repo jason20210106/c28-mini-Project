@@ -1,7 +1,7 @@
 import express from "express";
 // import { Request, Response } from "express";
 import expressSession from "express-session";
-import { converStr2Arr, readJsonfile } from "./utils";
+import { converStr2Arr, readJsonfile, writeJsonfile } from "./utils";
 import path from "path"
 import { Product, Student } from "./models";
 
@@ -57,8 +57,10 @@ app.post("/students",async(req,res)=>{
     id:(students.at(-1)?.id?? 0)+1,
     name,
     age,
-  })
-  res.json({message:"dummy"})
+  });
+  await writeJsonfile(STUDENT_JSON_PATH, students);
+  res.json({message:"success"})
+ 
 })
 
 

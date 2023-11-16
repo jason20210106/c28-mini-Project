@@ -25,10 +25,21 @@ function initStudentForm(){
           },
           body:JSON.stringify(formObject)
      })
-     console.log(resp.status)
-     // console.log(this)
-     // console.log(e.target)
-     //    console.log(form.name.value)
-    })
+
+     if(resp.status=== 200){
+         window.alert(
+           "SIGNUP success"
+         );
+             form.reset() 
+     // }else{
+     //      Swal.fire({
+     //           icon: 'error',
+     //           title: 'Oops...',
+     //           text: 'Something went wrong!',
+     //           footer: '<a href="">Why do I have this issue?</a>'
+     //         })
+     }
+    
+  })
 }
 

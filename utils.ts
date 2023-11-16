@@ -18,6 +18,6 @@ export async function readJsonfile(filepath:string){
   const data = await jsonfile.readFile(filepath);
   return data;
 }
-export function writeJsonfile(){
-    
+export async function writeJsonfile(filepath:string, data:any){
+    await jsonfile.writeFile(filepath,data,{spaces:2})
 }
